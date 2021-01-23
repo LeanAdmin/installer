@@ -38,11 +38,5 @@
         "vimeo/psalm": "^4.2",
         "nunomaduro/larastan": "^0.6.10",
         "guzzlehttp/guzzle": "^7.2"
-    },
-    "repositories": {
-        "lean": {
-            "type": "composer",
-            "url": "https://lean-admin.dev/releases"
-        }
     }
 }
