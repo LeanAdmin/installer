@@ -14,6 +14,11 @@
             "Lean\\Installer\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Lean\\Installer\\Tests\\": "tests/"
+        }
+    },
     "require": {
         "php": "^7.2|^8.0",
         "illuminate/console": "^8.24",
@@ -31,6 +36,13 @@
     "require-dev": {
         "orchestra/testbench": "^6.9",
         "vimeo/psalm": "^4.2",
-        "nunomaduro/larastan": "^0.6.10"
+        "nunomaduro/larastan": "^0.6.10",
+        "guzzlehttp/guzzle": "^7.2"
+    },
+    "repositories": {
+        "lean": {
+            "type": "composer",
+            "url": "https://lean-admin.dev/releases"
+        }
     }
 }

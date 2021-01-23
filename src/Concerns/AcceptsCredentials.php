@@ -12,6 +12,9 @@ use Throwable;
 
 trait AcceptsCredentials
 {
+    /* Used for testing. */
+    public static ?string $emailOverride = null;
+
     protected function getCredentials(): array
     {
         $email = null;
@@ -53,7 +56,7 @@ trait AcceptsCredentials
         $auth = $this->checkCredentials($email, $password);
 
         if ($auth->successful()) {
-            $this->info('Successfuly logged in.');
+            $this->info('Successfully logged in.');
 
             return [$email, $password];
         } else {
@@ -79,6 +82,10 @@ trait AcceptsCredentials
 
     protected function getEmailFromGit(): ?string
     {
+        if (static::$emailOverride) {
+            return static::$emailOverride;
+        }
+
         try {
             $process = $this->getProcess(['git', 'config', 'user.email']);
             $process->mustRun();

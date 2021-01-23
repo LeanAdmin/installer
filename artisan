@@ -1,0 +1,4 @@
+<?php
+
+// We call 'php artisan lean:install' in a test, so we need *some* artisan file in here.
+// We don't test the actual behavior, but the file needs to exist for the test to pass.

@@ -6,8 +6,8 @@ namespace Lean\Installer\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\Filesystem;
-use Illuminate\Http\Client\Factory;
 use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\Http;
 use Lean\Installer\Concerns;
 
 class Setup extends Command
@@ -21,16 +21,14 @@ class Setup extends Command
     public static string $repository = 'https://lean-admin.dev/releases';
 
     protected Filesystem $files;
-    protected Factory $http;
 
     public $signature = 'lean:setup';
 
-    public function __construct(Filesystem $files, Factory $http)
+    public function __construct(Filesystem $files)
     {
         parent::__construct();
 
         $this->files = $files;
-        $this->http = $http;
     }
 
     public function handle(): int
@@ -85,7 +83,7 @@ class Setup extends Command
 
     protected function api(string $path, string $email, string $password, array $extra = []): Response
     {
-        return $this->http->acceptJson()->withoutRedirecting()->put(static::$endpoint . '/' . $path, array_merge([
+        return Http::acceptJson()->withoutRedirecting()->put(static::$endpoint . '/' . $path, array_merge([
             'email' => $email,
             'password' => $password,
         ], $extra));
