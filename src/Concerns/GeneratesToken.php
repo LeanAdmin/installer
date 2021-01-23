@@ -15,7 +15,7 @@ trait GeneratesToken
     {
         $tokenName = null;
         while (! $tokenName) {
-            $input = $this->anticipate('Token name', [$this->getComputerName()], $this->getComputerName());
+            $input = $this->anticipate('Token name', [$this->getDefaultTokenName()], $this->getDefaultTokenName());
 
             $validator = Validator::make(['token' => $input], [
                 'token' => 'required',
@@ -38,6 +38,15 @@ trait GeneratesToken
     protected function generateToken(string $email, string $password, string $tokenName): Response
     {
         return $this->api('token', $email, $password, ['token_name' => $tokenName]);
+    }
+
+    protected function getDefaultTokenName(): ?string
+    {
+        if (gethostname()) {
+            return config('app.name') . ' @ ' . gethostname();
+        }
+
+        return config('app.name');
     }
 
     protected function writeTokenToAuthJson(string $token): void

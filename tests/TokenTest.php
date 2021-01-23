@@ -31,10 +31,12 @@ class TokenTest extends TestCase
             'lean-admin.dev/install/auth' => Http::response(['message' => 'OK'], 200, ['Content-Type' => 'application/json']),
         ]);
 
+        $defaultName = 'Laravel @ ' . gethostname();
+
         $this->artisan('lean:setup')
             ->expectsQuestion("What's your email?", 'samuel.stancl@gmail.com')
             ->expectsQuestion("What's your password?", 'foo')
-            ->expectsChoice('Token name', gethostname(), [gethostname()]) // <--
+            ->expectsChoice('Token name', $defaultName, [$defaultName]) // <--
             ->assertExitCode(0);
     }
 

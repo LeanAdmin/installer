@@ -76,11 +76,6 @@ class Setup extends Command
         return 0;
     }
 
-    protected function getComputerName(): ?string
-    {
-        return gethostname() ?: null;
-    }
-
     protected function api(string $path, string $email, string $password, array $extra = []): Response
     {
         return Http::acceptJson()->withoutRedirecting()->put(static::$endpoint . '/' . $path, array_merge([
