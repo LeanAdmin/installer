@@ -1,0 +1,36 @@
+{
+    "name": "leanadmin/installer",
+    "description": "Installer for Lean Admin",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Samuel Štancl",
+            "email": "samuel.stancl@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Lean\\Installer\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^7.2|^8.0",
+        "illuminate/console": "^8.24",
+        "illuminate/http": "^8.24",
+        "illuminate/support": "^8.24",
+        "illuminate/container": "^8.24"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lean\\Installer\\LeanInstallerProvider"
+            ]
+        }
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.9",
+        "vimeo/psalm": "^4.2",
+        "nunomaduro/larastan": "^0.6.10"
+    }
+}
